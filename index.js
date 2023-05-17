@@ -98,6 +98,13 @@ async function run() {
             const result =  await jobsPortalCollection.updateOne(filter , updateDoc);
             res.send(result)
     })
+
+    app.delete('/deletejob/:id' , async(req,res) =>{
+        const id =  req.params.id;
+        const filter =  {_id : new ObjectId(id)};
+        const result =  await jobsPortalCollection.deleteOne(filter);
+        res.send(result)
+    })
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log(
